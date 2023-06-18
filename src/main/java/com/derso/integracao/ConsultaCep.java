@@ -59,6 +59,9 @@ public class ConsultaCep {
 			.build();
 			
 		try {
+			// Poderíamos usar o sendAsync em caso de múltiplas requisições simultâneas
+			// "The higher the parallelism level of the API, the better the asynchronous method will perform."
+			// Ref.: https://stackoverflow.com/questions/73069823/external-service-call-with-java-11-httpclient-sync-vs-async
 			return client.send(request, BodyHandlers.ofString());
 		} catch (IOException | InterruptedException e) {
 			return (HttpResponse<String>) nullAfterRegisterError(
